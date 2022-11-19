@@ -39,7 +39,7 @@ let bookCatalog = [
       "imageLink": "https://m.media-amazon.com/images/I/51csAp-ykgL._SX379_BO1,204,203,200_.jpg",
       "title": "Programming TypeScript",
       "price": 28,
-      "description": "Any programmer working with a dynamically typed language will tell you how hard it is to scale to more lines of code and more engineers. That’s why Facebook, Google, and Microsoft invented gradual static type layers for their dynamically typed JavaScript and Python code. This practical book shows you how one such type layer, TypeScript, is unique among them: it makes programming fun with its powerful static type system."
+      "description": "Any programmer working with a dynamically typed language will tell you how hard it is to scale to more lines of code and more engineers. That’s why Facebook, Google, and Microsoft invented gradual static type layers for their dynamically typed JavaScript and Python code. This book shows you how one such type layer, TypeScript, is unique among them: it makes programming fun with its powerful static type system."
     },
     {
       "author": "Alex Banks, Eve Porcello",
@@ -71,10 +71,36 @@ let bookCatalog = [
     }
 ];
 
-let header = document.createElement('h1');
+let header = document.createElement('header');
 header.className = 'header';
-header.innerText = 'Book catalog';
 document.body.append(header);
+
+let title = document.createElement('h1');
+title.className = 'title';
+title.innerText = 'Book catalog';
+document.body.append(title);
+
+let myBag = document.createElement('button');
+myBag.className = 'myBag';
+myBag.innerHTML = 'My Bag';
+title.append(myBag);
+
+let myBagBooks = document.createElement('div');
+myBagBooks.className = 'myBagBooks';
+title.append(myBagBooks);
+
+let myBagClose = document.createElement('button');
+myBagClose.className = 'myBagClose';
+myBagClose.innerHTML = 'CLOSE';
+myBagBooks.append(myBagClose);
+
+let confirmOrder = document.createElement('button');
+confirmOrder.className = 'confirmOrder';
+confirmOrder.innerHTML = 'CONFIRM YOUR ORDER';
+myBagBooks.append(confirmOrder);
+
+
+
 
 let bookSection = document.createElement('section');
 bookSection.className = 'bookContainer';
@@ -110,19 +136,82 @@ for (var i = 0; i < bookCatalog.length; i++) {
     price.innerHTML = '$' + bookCatalog[i].price;
     title.after(price);
 
+    let bagBox = document.createElement('div');
+    bagBox.className = 'bagBox';
+    price.after(bagBox);
+
+
+
+    let popUpButton = document.createElement('button');
+    popUpButton.className = 'popUpButton';
+    popUpButton.innerHTML = 'Show more';
+    bagBox.append(popUpButton);
+
+    let popUp = document.createElement('div');
+    popUp.className = 'popUp';
+    bagBox.append(popUp);
+
+    let popUpText = document.createElement('p');
+    popUpText.className = 'popUpText';
+    popUpText.innerHTML = bookCatalog[i].description;
+    popUp.append(popUpText);
+
+    let popUpClose = document.createElement('button');
+    popUpClose.className = 'popUpClose';
+    popUpClose.innerHTML = '';
+    popUp.append(popUpClose);
 
 
 
 
-
-    // price.after(btnDiv);
-    // btnDiv.after(descrDiv);
-    // books.appendChild(div);
+    let bagButton = document.createElement('button');
+    bagButton.className = 'bagButton';
+    bagButton.innerHTML = 'Add to My Bag';
+    bagBox.appendChild(bagButton);
 
 
 
 
 };
+
+let popUpOpen = document.querySelectorAll('.popUpButton');
+for (let i=0; i<popUpOpen.length; i++){
+  popUpOpen[i].addEventListener('click', popUpStart);
+  function popUpStart () {
+    popUpOpen[i].nextSibling.classList.add('active');
+  }
+}
+
+let popUpClose = document.querySelectorAll('.popUpClose');
+for (let i=0; i<popUpClose.length; i++){
+popUpClose[i].addEventListener('click', popUpEnd);
+  function popUpEnd () {
+    popUpClose[i].parentElement.classList.remove('active');
+  }
+}
+
+
+let bagBooks = document.querySelector('.myBagBooks'); // text window
+let myBagOpen = document.querySelector('.myBag'); // open btn
+let bagClose = document.querySelector('.myBagClose'); // close btn
+
+
+myBagOpen.addEventListener('click', () => {
+  bagBooks.classList.add('active');
+});
+
+bagClose.addEventListener('click', () => {
+  bagBooks.classList.remove('active');
+});
+
+
+let orderConfirmBtn = document.querySelector('.confirmOrder');
+orderConfirmBtn.addEventListener('click', () => {
+  window.location.href = 'pages/order_confirmation/index.html';
+});
+
+
+
 
 
 

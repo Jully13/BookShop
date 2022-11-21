@@ -94,6 +94,11 @@ myBagClose.className = 'myBagClose';
 myBagClose.innerHTML = 'CLOSE';
 myBagBooks.append(myBagClose);
 
+let totalSum = document.createElement('div');
+totalSum.className = 'totalSum';
+myBagBooks.append(totalSum);
+
+
 let confirmOrder = document.createElement('button');
 confirmOrder.className = 'confirmOrder';
 confirmOrder.innerHTML = 'CONFIRM YOUR ORDER';
@@ -166,6 +171,7 @@ for (var i = 0; i < bookCatalog.length; i++) {
 
     let bagButton = document.createElement('button');
     bagButton.className = 'bagButton';
+    bagButton.dataset.title = bookCatalog[i].title;
     bagButton.innerHTML = 'Add to My Bag';
     bagBox.appendChild(bagButton);
 
@@ -209,6 +215,55 @@ let orderConfirmBtn = document.querySelector('.confirmOrder');
 orderConfirmBtn.addEventListener('click', () => {
   window.location.href = 'pages/order_confirmation/index.html';
 });
+
+
+
+
+let myBagBooksArr = document.querySelectorAll('.bagButton');
+bookSection.addEventListener("click",  event => {
+  let button = event.target;
+  for (let book of bookCatalog) {
+    if (button.dataset.title === book.title) {
+      addBook(book);
+    }
+  }
+});
+
+function addBook(elem) {
+  let bagBook = {};
+  bagBook.title = elem.title;
+  bagBook.author = elem.author;
+  bagBook.price = elem.price;
+
+  bagList = document.createElement('li');
+  bagList.className = 'bagList';
+  myBagBooks.append(bagList);
+
+  bookCard = document.createElement('div');
+  bookCard.className = 'bookCard';
+  bookCard.innerHTML = `<span style='color:brown'>${elem.author}</span> <span style='color: green; font-style: italic;'>"${elem.title}"</span> <span>Price ${elem.price}$</span>`;
+  bagList.append(bookCard);
+
+  delBtn = document.createElement('button');
+  delBtn.className = 'delBtn';
+  delBtn.innerHTML = `&#88;`;
+  bookCard.append(delBtn);
+
+  getTotal(elem.price);
+  deleteElem();
+}
+
+let amount = 0;
+
+function getTotal(price){
+    amount += price;
+    totalSum.innerHTML = `Total = ${amount}$`;
+}
+
+function deleteElem() {
+  let deleteBagBook = document.querySelectorAll('.myBagClose');
+
+}
 
 
 

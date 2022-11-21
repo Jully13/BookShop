@@ -11,6 +11,7 @@
 <body>
     <header class="header"></header>
     <div class="wrapper">
+
             <main>
                  <h1 class="title">Order Confirmation</h1>
                  <a href="../../index.html">Return to the book-shop</a>
@@ -18,15 +19,15 @@
 
                  <form action="#">
 
-                    <input type="text" placeholder="Enter your name" required>
-                    <input type="text" placeholder="Enter your surname" required>
-                    <input type="date" required min="">
+                    <input type="text" id="name" placeholder="Enter your name" pattern="[A-Za-z]{4,}" title="The length not less than 4 symbols, strings only, without spaces" autofocus required>
+                    <input type="text" id="surname" placeholder="Enter your surname" pattern="[A-Za-z]{5,}" title="The length not less than 5 symbols, strings only, without spaces" required>
+                    <input type="date" id="date" required>
 
                     <div class="devlivery_adress">
                         <p>Shipping adress</p>
-                        <input type="text" placeholder="Enter your street" required>
-                        <input type="text" placeholder="Enter your house number" required>
-                        <input type="number" placeholder="Enter your flat number" required>
+                        <input type="text" id="street" placeholder="Enter your street" pattern="[A-Za-z]{4,}" text="The length not less than 5 symbols, the numbers are allowed" required>
+                        <input type="number" id="house" placeholder="Enter your house number" pattern="[0-9]" text="Numbers only" required>
+                        <input type="number" id="flat" placeholder="Enter your flat number" pattern="[0-9\-]" text="Numbers only, positive numbers only, the dash symbol is allowed" required>
                     </div>
 
                     <div class="payment">
@@ -46,29 +47,32 @@
                     <div class="gifts">
                         <p>Choose two gifts</p>
                         <div class="gift_checkbox">
-                            <input class="gift_input" type="checkbox" name="pack" id="pack">
+                            <input class="gift_input" type="checkbox" name="pack" id="pack" required>
                             <label class="gift_label" for="pack">pack as a gift</label>
                         </div>
                         <div class="gift_checkbox">
-                            <input class="gift_input" type="checkbox" name="postcard" id="postcard">
+                            <input class="gift_input" type="checkbox" name="postcard" id="postcard" required>
                             <label class="gift_label" for="postcard">add postcard</label>
                         </div>
                         <div class="gift_checkbox">
-                            <input class="gift_input" type="checkbox" name="discount" id="discount">
+                            <input class="gift_input" type="checkbox" name="discount" id="discount" required>
                             <label class="gift_label" for="discount">provide 2% discount to the next time</label>
                         </div>
                         <div class="gift_checkbox">
-                            <input class="gift_input" type="checkbox" name="brand" id="brand">
+                            <input class="gift_input" type="checkbox" name="brand" id="brand" required>
                             <label class="gift_label" for="brand">branded pen or pencil</label>
                         </div>
                     </div>
+
+                    <button type="submit" id="submit" disabled>Complete</button>
                 </form>
 
-                <button class="button_complete">COMPLETE</button>
+
 
                 </div>
 
             </main>
     </div>
+    <script src="./script.js"></script>
 </body>
 </html>

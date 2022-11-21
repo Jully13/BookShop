@@ -70,6 +70,20 @@ input {
     height: 20px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:invalid {
+    border-color: red;
+}
+input,
+input:valid {
+    border-color: #ccc;
+}
+
 p{
     margin-bottom: 10px;
     font-weight: 700;
@@ -91,17 +105,12 @@ p{
     width: 20px;
 }
 
-.button_complete{
+#submit{
 height: 50px;
 width: 120px;
 margin: 0 280px;
-background-color:gold;
-border-color: goldenrod;
 font-size: 18px;
 font-weight: 700;
-color: darkolivegreen;
 }
 
-.button_complete:hover{
-    background-color:goldenrod;
-}
+
